@@ -1,8 +1,9 @@
 {
   "name": "react-masked-control",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Simple react masked input for masking the entered values.",
-  "main": "index.js",
+  "main": "dist/export.js",
+  "types": "types/index.d.ts",
   "scripts": {
     "build": "webpack --mode production"
   },
@@ -28,5 +29,9 @@
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ashwith2001/react-masked-control"
   }
 }

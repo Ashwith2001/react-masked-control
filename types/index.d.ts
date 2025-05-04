@@ -1,56 +1,56 @@
 import * as React from "react";
 
-export interface Column {
-    header: string | (() => React.ReactNode);
-    dataField: string;
-    sort?: boolean;
-    cell?: (cellData: any, row: any, dataField: string) => React.ReactNode;
-    ignoreSearch?: boolean;
+export interface ReactMaskedControlProps {
+  /**
+   * Character to replace actual input (e.g., '*').
+   * If null, no character replacement is performed.
+   */
+  replaceCharacter?: string | null;
+
+  /**
+   * Number of characters to mask with `replaceCharacter`.
+   * Defaults to the full length of the input.
+   */
+  replaceCharacterLength?: number | null;
+
+  /**
+   * Defines the structure of the input by grouping characters.
+   * Example: [3,3,4] with '-' will produce '123-456-7890'.
+   */
+  delimiterBlocks?: number[];
+
+  /**
+   * Character used to separate each block (e.g., '-').
+   */
+  delimiterCharacter?: string | null;
+
+  /**
+   * Called when the input changes.
+   * Receives the original event, the masked value, and the raw (unmasked) value.
+   */
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    maskedValue: string,
+    rawValue: string
+  ) => void;
+
+  /**
+   * Props to be passed directly to the underlying native input.
+   */
+  nativeInputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+
+  /**
+   * Raw (unmasked) input value.
+   */
+  value?: string;
+
+  /**
+   * Maximum length for raw input.
+   */
+  maxLength?: number | null;
 }
 
-
-export interface SortProps {
-    sortBy?: string;
-    sortOrder?: "asc" | "desc";
-}
-
-export interface PaginationProps {
-    currentPage?: number;
-    sizePerPage?: number;
-    sizePerPageList?: number[];
-}
-
-export interface SearchProps {
-    onSearch?: (rows: Array<any>, searchText: string) => Array<any>;
-}
-
-export interface ClassNames {
-    wrapper?: string;
-    textInput?: string;
-    table?: string;
-    thead?: string;
-    th?: string;
-    tbody?: string;
-    tr?: string;
-    td?: string;
-    paginationWrapper?: string;
-    rowsPerPageSelect?: string;
-    pagination?: string;
-}
-
-export interface ReactTableProps {
-    rows: any[];
-    columns: Column[];
-    noDatatableMessage?: string;
-    sortProps?: SortProps;
-    paginationProps?: PaginationProps;
-    searchProps?: SearchProps;
-    showPagination?: boolean;
-    showSizePerPage?: boolean;
-    showSearchBar?: boolean;
-    classNames?: ClassNames;
-}
-
-export declare const ReactTable: React.FC<ReactTableProps>;
-
-export default ReactTable;
+/**
+ * A customizable masked input React component.
+ */
+export const ReactMaskedControl: React.FC<ReactMaskedControlProps>;
